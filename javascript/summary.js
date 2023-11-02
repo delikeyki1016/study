@@ -7,6 +7,22 @@ window.onload = function(){
         }
 }
 
+//## 후행,선행 연산
+a = 10
+b = a++ //b=10, a=11 후행연산
+b = ++a //b=12, a=12 //선행연산
+
+
+//#호이스팅(JS에서만 허용) ==> 그래서 let을 사용함.
+a = 9 
+console.log(a)  //9 => var a 가 호이스팅 되어서 a는 인식하지만, 값의 호이스팅까지는 일어나지않음
+var a = 10      // 값은 여기와서 다시 대입된다.
+console.log(a)   // 10
+console.log(a+b)  //NaN => 10 + undefined
+var b = 20        
+console.log(a+b) //30 
+
+
 //var : 호이스팅O, 중복선언O, 함수스코프만 지원, 다른 블록스코프들은(if,for) 스코프를 지원하지않음
 //let : 호이스팅 X, 중복선언X, 함수,if,for 등 블록스코프 지원
 // Heap, Stack 메모리 : 각각의 저장 공간이 다름, 따라서 변수명이 같아도 다른 저장공간에 저장됨으로 에러가 나지 않음 

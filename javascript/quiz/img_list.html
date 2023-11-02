@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <title>첫번째 실습</title>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+            table,
+            th,
+            td {
+                border: 1px solid #222;
+            }
+        </style>
+    </head>
+    <body>
+        <section>
+
+            
+        </section>
+        <section>
+            <h1>이미지리스트 선택</h1>
+            <img
+                src="https://image.shutterstock.com/image-illustration/abstract-fluid-iridescent-holographic-neon-260nw-2236471471.jpg"
+                style="width: 300px; height: 300px"
+                alt="big img"
+                id="bigImg"
+            />
+            <ul id="imgList">
+                <li>
+                    <img
+                        src="https://image.shutterstock.com/image-illustration/abstract-fluid-iridescent-holographic-neon-260nw-2236471471.jpg"
+                        class="small"
+                        style="width: 50px; height: 50px"
+                    />
+                </li>
+                <li>
+                    <img
+                        src="https://image.shutterstock.com/image-vector/wave-particles-abstract-background-dynamic-260nw-1079462459.jpg"
+                        class="small"
+                        style="width: 50px; height: 50px"
+                    />
+                </li>
+                <li>
+                    <img
+                        src="https://image.shutterstock.com/image-vector/minimalist-trendy-abstract-pattern-modern-260nw-2010331265.jpg"
+                        class="small"
+                        style="width: 50px; height: 50px"
+                    />
+                </li>
+            </ul>
+        </section>
+        <script>
+            let small = document.querySelectorAll("#imgList > li > .small");
+            // for(let i=0; i<small.length; i++) {
+            //     small[i].addEventListener("click", imgClick)
+            // }
+
+            // function imgClick(){
+            //     document.getElementById("bigImg").setAttribute("src", this.src)
+            // }
+
+            for (let i = 0; i < small.length; i++) {
+                small[i].addEventListener("click", function () {
+                    imgClick(event.target);
+                });
+            }
+
+            function imgClick(par) {
+                document.getElementById("bigImg").setAttribute("src", par.src);
+            }
+        </script>
+
+        <hr />
+        <section>
+            <h1>리스트 추가하기</h1>
+        </section>
+        <ul id="myList"></ul>
+        <input type="text" id="myText" />
+        <button id="btnAdd">리스트 추가</button>
+
+        <script>
+            document.getElementById("myText").addEventListener("focus", () => {
+                myText.value = "";
+            });
+
+            document
+                .getElementById("btnAdd")
+                .addEventListener("click", function () {
+                    let myText = document.getElementById("myText").value;
+
+                    let myLi = document.createElement("li");
+
+                    let writeText = document.createTextNode(myText);
+
+                    let btnDel = document.createElement("button");
+
+                    let btnDelText = document.createTextNode("리스트 삭제");
+
+                    btnDel.appendChild(btnDelText);
+
+                    myLi.appendChild(writeText);
+                    myLi.appendChild(btnDel);
+
+                    document
+                        .getElementById("myList")
+                        .insertBefore(
+                            myLi,
+                            document.getElementById("myList").childNodes[0]
+                        );
+
+                    let allBtn = document.querySelectorAll("#myList button");
+
+                    for (let i = 0; i < allBtn.length; i++) {
+                        allBtn[i].addEventListener("click", function () {
+                            if (this.parentNode.parentNode) {
+                                this.parentNode.parentNode.removeChild(
+                                    this.parentNode
+                                );
+                            }
+                        });
+                    }
+                });
+        </script>
+    </body>
+</html>

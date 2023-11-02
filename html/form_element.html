@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .rangeInput{
+            width: 90%;
+            height: 10px;
+            background: linear-gradient(to right, #FFE283 0%, #FFE283 50%, #ececec 50%, #ececec 100%);
+            border-radius: 8px;
+            outline: none;
+            transition: background 450ms ease-in;
+            appearance:none;
+            -webkit-appearance: none;
+            accent-color: #ffca1d;
+        }
+    </style>
+</head>
+<body>
+    <h1>여러가지 input type</h1>
+    <!-- id는 프론트단에서 사용, name은 백단에서 사용 -->
+    <form action="addUser?a1=10&a2=20" method="">
+        search: <input type="search" placeholder="search" required size="20" /><br/>
+        url: <input type="url" placeholder="url" required /><br/>
+        email: <input type="email" placeholder="email" required /><br/>
+        number: <input type="number" placeholder="number" step="5" /><br/> <!-- step 5씩 증가 -->
+        tel: <input type="tel" placeholder="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" title="릴리리아" required /><br/> <!-- search, url, email, tel 타입은 유효성체크를 위한 타입이다. 모바일환경을 고려해서 나온 것이다 -->
+        range: <input type="range" placeholder="range"/><br/>
+        <input class="rangeInput" max="100" min="0" step="1" type="range" /><br>
+        date: <input type="date" placeholder="date" /><br/>
+        month: <input type="month" placeholder="month" /><br/>
+        week: <input type="week" placeholder="week" /><br/>
+        time: <input type="time" placeholder="time" /><br/>
+        datetime: <input type="datetime" placeholder="datetime" value="2023-10-23" /><br/>
+        datetime-local <input type="datetime-local" placeholder="datetime-local" /><br/> <!-- 년월일이 로컬언어로 -->
+        
+        <input type="text" list="dataSelect"/>
+        <datalist id="dataSelect" style="display:block">
+            <option value="1">선택1</option>
+            <option value="2">선택2</option>
+        </datalist>
+
+        <fieldset>
+            <legend>필수항목</legend>
+            <div><label for="ipID">아이디 : </label><input type="text" id="ipID" name="ipID" placeholder="ID" /></div>
+            <div></div><label for="ipPW">비밀번호 : </label><input type="password" id="ipPW" name="ipPW" placeholder="Password" /></div>
+        </fieldset>
+
+        <fieldset>
+            <legend>선택항목</legend>
+            <div><label>성별 : </label>
+                <input type="radio" id="genMale" name="gender" value="M" /><label for="genMale">남자</label>
+                <input type="radio" id="genFemale" name="gender" value="F" /><label for="genFemale">여자</label>
+            </div>
+            <div>
+                <input type="checkbox" id="ipAgree" name="ipAgreeName"><label for="ipAgree">약관동의</label>
+            </div>
+        </fieldset>
+        <input type="submit" value="가입하기" />
+    </form>
+    <script>
+        document.querySelector('.rangeInput').addEventListener('input',function(event){
+  	        var gradient_value = 100 / event.target.attributes.max.value;
+            event.target.style.background = 'linear-gradient(to right, #FFE283 0%, #FFE283 ' + gradient_value * event.target.value +'%, rgb(236, 236, 236) ' + gradient_value * event.target.value + '%, rgb(236, 236, 236) 100%)';
+        });
+    </script>
+
+    <hr>
+
+    <h1>object 로 pdf 삽입하기</h1>
+    <object width="900" height="400" data="assets/sample.pdf"></object>
+
+    <h1>object 로 html 삽입하기</h1>
+    <object width="900" height="400" data="form_element.html"></object>
+
+    <hr>
+    <h1>audio video</h1>
+    <audio src="assets/spring.mp3" controls></audio><br />
+    <video
+        src="assets/flight.mp4"
+        controls
+        poster="https://image.shutterstock.com/image-illustration/abstract-fluid-iridescent-holographic-neon-260nw-2236471471.jpg"
+        width="400px"
+    ></video>
+
+    <hr>
+
+    <h1>geo tag</h1>
+    <a href="geo:37.5,127.6">geo</a>
+
+    <hr>
+
+    <h1>picture tag</h1>
+    <picture>
+        <source
+            srcset="
+                https://image.shutterstock.com/image-illustration/abstract-fluid-iridescent-holographic-neon-260nw-2236471471.jpg
+            "
+            media="(min-width: 1000px)"
+            width="400px"
+        />
+        <source
+            srcset="
+                https://image.shutterstock.com/image-vector/wave-particles-abstract-background-dynamic-260nw-1079462459.jpg
+            "
+            media="(min-width: 500px)"
+            width="200px"
+        />
+        <img
+            src="https://image.shutterstock.com/image-vector/minimalist-trendy-abstract-pattern-modern-260nw-2010331265.jpg"
+            width="100%"
+        />
+    </picture>
+</body>
+</html>

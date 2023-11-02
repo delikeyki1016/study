@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin:0;padding:0;
+        }
+        html,body {
+            width:100%;
+            height:100%;
+        }
+        .container-grid {
+                display:grid;
+                width:100%;
+                height:100%;
+                /* grid-template-columns: 1fr 1fr 1fr 1fr; /* repeat(4, 1fr) */
+                /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 최소가로 300px */
+                grid-template-columns: 1fr 4fr;  
+                grid-template-rows: repeat(3, 1fr);
+                grid-gap: 10px;
+                /* grid-auto-flow: row; */
+                grid-template-areas: 
+                    "box1 box1"
+                    "box2 box3"
+                    "box4 box4";
+            }
+
+            .container-grid > div { 
+                border:1px solid black;
+            }
+            
+            .container-grid .box1 {
+                grid-area: box1;
+                background-color:coral
+            }
+            .container-grid .box2 {
+                grid-area: box2;
+                background-color:cornflowerblue
+            }
+            .container-grid .box3 {
+                grid-area: box3;
+                background-color:darkseagreen
+            }
+            .container-grid .box4 {
+                grid-area: box4;
+                background-color:khaki
+            }
+
+            @media screen and (max-width:768px) {
+                .container-grid {
+                    grid-template-columns: 1fr;  
+                    grid-template-rows: repeat(4, 1fr); 
+                    grid-template-areas: 
+                    "box1"
+                    "box3"
+                    "box2"
+                    "box4";
+                }
+            }
+    </style>
+</head>
+<body>
+    <div class="container-grid">
+        <div class="box1">box 1
+            <p>fork는 다른 사람의 Github repository에서 내가 어떤 부분을 수정하거나 추가 기능을 넣고 싶을 때 해당 respository를 내 Github repository로 그대로 복제하는 기능이다. fork한 저장소는 원본(다른 사람의 github repository)와 연결되어 있다. 여기서 연결 되어 있다는 의미는 original repository에 어떤 변화가 생기면(새로운 commit) 이는 그대로 forked된 repository로 반영할 수 있다. 이 때 fetch나 rebase의 과정이 필요하다.</p>
+        </div>
+        <div class="box2">box 2
+            <p>fork는 다른 사람의 Github repository에서 내가 어떤 부분을 수정하거나 추가 기능을 넣고 싶을 때 해당 respository를 내 Github repository로 그대로 복제하는 기능이다. fork한 저장소는 원본(다른 사람의 github repository)와 연결되어 있다. 여기서 연결 되어 있다는 의미는 original repository에 어떤 변화가 생기면(새로운 commit) 이는 그대로 forked된 repository로 반영할 수 있다. 이 때 fetch나 rebase의 과정이 필요하다.</p>
+        </div>
+        <div class="box3">
+            <div style="float:left;width:49%;">
+                <h1>box 3</h1>
+                <ul>
+                    <li style="float:left;width:30%">
+                        <img src="https://velog.velcdn.com/post-images%2Fimacoolgirlyo%2Fcbe5ca40-5f44-11e9-88b2-25d00148b532%2Fgitfork.png" style="width:100%">
+                        <h2>상품타이틀</h2>
+                    </li>
+                    <li style="float:left;width:30%">
+                        <img src="https://velog.velcdn.com/post-images%2Fimacoolgirlyo%2Fcbe5ca40-5f44-11e9-88b2-25d00148b532%2Fgitfork.png" style="width:100%">
+                        <h2>상품타이틀</h2>
+                    </li>
+                    <li style="float:left;width:30%">
+                        <img src="https://velog.velcdn.com/post-images%2Fimacoolgirlyo%2Fcbe5ca40-5f44-11e9-88b2-25d00148b532%2Fgitfork.png" style="width:100%">
+                        <h2>상품타이틀</h2>
+                    </li>
+                </ul>
+            </div>
+            <div style="float:left;width:50%;">
+                <h1>box 3 inner</h1>
+                <p>fork는 다른 사람의 Github repository에서 내가 어떤 부분을 수정하거나 추가 기능을 넣고 싶을 때 해당 respository를 내 Github repository로 그대로 복제하는 기능이다. fork한 저장소는 원본(다른 사람의 github repository)와 연결되어 있다. 여기서 연결 되어 있다는 의미는 original repository에 어떤 변화가 생기면(새로운 commit) 이는 그대로 forked된 repository로 반영할 수 있다. 이 때 fetch나 rebase의 과정이 필요하다.</p>
+                <p>fork는 다른 사람의 Github repository에서 내가 어떤 부분을 수정하거나 추가 기능을 넣고 싶을 때 해당 respository를 내 Github repository로 그대로 복제하는 기능이다. fork한 저장소는 원본(다른 사람의 github repository)와 연결되어 있다. 여기서 연결 되어 있다는 의미는 original repository에 어떤 변화가 생기면(새로운 commit) 이는 그대로 forked된 repository로 반영할 수 있다. 이 때 fetch나 rebase의 과정이 필요하다.</p>
+                <p>fork는 다른 사람의 Github repository에서 내가 어떤 부분을 수정하거나 추가 기능을 넣고 싶을 때 해당 respository를 내 Github repository로 그대로 복제하는 기능이다. fork한 저장소는 원본(다른 사람의 github repository)와 연결되어 있다. 여기서 연결 되어 있다는 의미는 original repository에 어떤 변화가 생기면(새로운 commit) 이는 그대로 forked된 repository로 반영할 수 있다. 이 때 fetch나 rebase의 과정이 필요하다.</p>
+                <p>fork는 다른 사람의 Github repository에서 내가 어떤 부분을 수정하거나 추가 기능을 넣고 싶을 때 해당 respository를 내 Github repository로 그대로 복제하는 기능이다. fork한 저장소는 원본(다른 사람의 github repository)와 연결되어 있다. 여기서 연결 되어 있다는 의미는 original repository에 어떤 변화가 생기면(새로운 commit) 이는 그대로 forked된 repository로 반영할 수 있다. 이 때 fetch나 rebase의 과정이 필요하다.</p>
+                <p>fork는 다른 사람의 Github repository에서 내가 어떤 부분을 수정하거나 추가 기능을 넣고 싶을 때 해당 respository를 내 Github repository로 그대로 복제하는 기능이다. fork한 저장소는 원본(다른 사람의 github repository)와 연결되어 있다. 여기서 연결 되어 있다는 의미는 original repository에 어떤 변화가 생기면(새로운 commit) 이는 그대로 forked된 repository로 반영할 수 있다. 이 때 fetch나 rebase의 과정이 필요하다.</p>
+                
+            </div>
+        </div>
+        <div class="box4">box 4
+            <p>fork는 다른 사람의 Github repository에서 내가 어떤 부분을 수정하거나 추가 기능을 넣고 싶을 때 해당 respository를 내 Github repository로 그대로 복제하는 기능이다. fork한 저장소는 원본(다른 사람의 github repository)와 연결되어 있다. 여기서 연결 되어 있다는 의미는 original repository에 어떤 변화가 생기면(새로운 commit) 이는 그대로 forked된 repository로 반영할 수 있다. 이 때 fetch나 rebase의 과정이 필요하다.</p>
+        </div>
+    </div>
+</body>
+</html>
