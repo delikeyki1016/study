@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입력받은 값내에서 소수만 출력하기</title>
+</head>
+<body>
+    <script>
+        let num = prompt("2이상의 값을 입력하세요")
+        let primeList = []
+
+        if (num !== null && num !== "") {
+            if (num < 2) {
+                document.write("2 이상의 값을 입력하세요")
+            } else {
+                for (let i=2; i<=num; i++) {
+                    let isPrime = true
+                    //소수판별
+                    let divider = 2
+                    while(i > divider) {
+                        if(i%divider === 0) {
+                            isPrime = false 
+                            break
+                        } else {
+                            divider++
+                        }                                                   
+                    }
+                    if(isPrime){
+                        primeList.push(i)
+                    }
+                }
+                document.write(primeList)
+            }
+        } else {
+            document.write("값을 입력하지 않았습니다.")
+        }
+    </script>
+</body>
+</html>

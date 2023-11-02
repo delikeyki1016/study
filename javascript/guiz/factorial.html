@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팩토리얼</title>
+</head>
+<body>
+    <h1>팩토리얼</h1>
+    <script>        
+        var num = prompt("숫자를 입력하세요")
+        var msg = ""
+        
+        if(num !== null && num !== '') {
+            var result = 1
+            var k = 1
+            var msg = ''
+            while(k<=num){
+                if (k == num) {
+                    msg += `${k} => 결과값: `
+                } else {
+                    msg += `${k} x `
+                }                
+                result *= k
+                k++
+            }
+
+            msg = num + "! = " + msg + result
+        } else {
+            msg = "값이 입력되지 않았습니다."
+        }
+        document.write(msg)
+            
+    </script>
+</body>
+</html>
