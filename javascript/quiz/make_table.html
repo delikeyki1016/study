@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {border-collapse:collapse}
+        th, td {border:1px solid blue; padding:5px;}
+    </style>
+</head>
+<body>
+    <h1>테이블 생성하기</h1>
+    <input type="number" name="ipt_row" id="ipt_row" placeholder="행 입력" />
+    <input type="number" name="ipt_col" id="ipt_col" placeholder="열 입력" />
+    <button type="button" id="btnNewTbl">테이블 생성</button>
+    <div id="tbl"></div>
+
+    <script>
+        const persons = [
+            {name: "홍길동", age: 18}, 
+            {name: "고길동", age: 48}, 
+            {name: "면정학", age: 40}, 
+            {name: "김구남", age: 22}
+        ]
+        document.getElementById("btnNewTbl").addEventListener("click", function(){
+            let tbl = document.getElementById("tbl")
+            if (tbl.hasChildNodes()) {
+                tbl.innerHTML = ''
+            }
+            let ipt_row = parseInt(document.getElementById("ipt_row").value)
+            let ipt_col = parseInt(document.getElementById("ipt_col").value)
+            console.log(typeof ipt_row +":"+ ipt_row, typeof ipt_col +":"+ ipt_col) //getElementByName으로 가져오면 [0]번째를 호출해야한다.
+    
+            //table 노드 생성
+            let newTbl = document.createElement("table")
+    
+            for (let i=0; i<ipt_row; i++){
+                // tr 노드 생성
+                let newTr = document.createElement("tr") 
+
+                for(let j=0; j<ipt_col; j++) {
+                    // td 노드 생성
+                    let newTd = document.createElement("td")
+                    // td 텍스트 노드 생성
+                    let newTdText = ""
+                    if ( j < persons.length ) { //열 갯수가 객체 길이 내에 포함될 때만, 객체내용 노출 
+                        console.log(j)
+                        newTdText = document.createTextNode(`${persons[j].name} (${persons[j].age})`)
+                    } else if ( j >= persons.length ) { //객체길이보다 열 갯수가 많을 경우, 즉 데이타가 없을 경우 
+                        newTdText = document.createTextNode(i+','+j)
+                    }
+                    
+                    // td 텍스트 노드 추가
+                    newTd.appendChild(newTdText)
+                    // td 노드 추가
+                    newTr.appendChild(newTd)
+                }
+                
+                // tr 노드 추가
+                newTbl.appendChild(newTr)
+            }
+
+            //table 노드 추가
+            tbl.append(newTbl)
+        })
+    </script>
+</body>
+</html>

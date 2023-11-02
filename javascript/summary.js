@@ -1,3 +1,12 @@
+//## window.onload
+//DOM Node가 #a1을 메모리에 할당한 후에 실행해라. window는 브라우저를 지칭, onload : 브라우저가 html 파싱이 완료된 순간임 즉 메모리할당이 끝난 순간. 즉 일반적으로 돔노드를 접근하는 코드는 온로드 이벤트 안에 작성함
+window.onload = function(){ 
+        let heading = document.querySelector("#a1")
+        heading.onclick = function(){
+            heading.style.color = 'blue'
+        }
+}
+
 //var : 호이스팅O, 중복선언O, 함수스코프만 지원, 다른 블록스코프들은(if,for) 스코프를 지원하지않음
 //let : 호이스팅 X, 중복선언X, 함수,if,for 등 블록스코프 지원
 // Heap, Stack 메모리 : 각각의 저장 공간이 다름, 따라서 변수명이 같아도 다른 저장공간에 저장됨으로 에러가 나지 않음 
@@ -32,3 +41,7 @@ sum(10,20)
 let myFunc1 = (no1, no2) => no1 + no2 
 myFunc1(10,20)
 //hof(high order function)에서 주로 사용 : 다른함수를 매개변수로 받아들이는 함수, 함수를 결과로 리턴하는 함수
+
+
+//## 객체 : 관련된 변수,함수를 묶은 것 
+
