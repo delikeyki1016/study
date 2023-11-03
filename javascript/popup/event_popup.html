@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>이벤트 팝업</h1>
+    <a href="event_detail.html" id="eventDetail">이벤트 상세보기를 부모창에 띄운 후 self close</a>
+    <script>
+        let eventDetail = document.getElementById("eventDetail")
+        eventDetail.addEventListener("click", function(){
+            window.opener.location = eventDetail.href
+            window.close()
+        })
+    </script>
+</body>
+</html>

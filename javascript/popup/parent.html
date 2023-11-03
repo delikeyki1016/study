@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팝업 예시</title>
+</head>
+<body>
+    <h1>이벤트 팝업</h1>
+    <button onclick="popup()">이벤트 팝업열기</button><br/>
+    <button onclick="popupClose()">이벤트 팝업닫기</button><br/>
+    <script>
+        let popupWin
+        function popup(){
+            popupWin = window.open("event_popup.html", "popup", "toolbar=no,scrollbars=no,top=300,left=300,width=500, height=300")
+            popupWin.opener = self // 이 윈도우를 띄운 부모를 명시, this도 가능 window를 지칭, 삭제해도 이슈없음
+        }
+
+        function popupClose(){
+            popupWin.close()
+        }
+    </script>
+
+
+    <h1>부모 브라우저와 팝업 브라우저의 데이타 전달</h1>
+
+    <button onclick="childPopup()">자식팝업 열기</button>
+    <button onclick="call_child()">자식의 함수 호출</button>
+    <input type="text" name="search" id="search" />
+
+    <script>
+        function childPopup(){
+            window.open("child.html", "child_popup", "toolbar=no,scrollbars=no,top=300,left=300,width=500, height=300")
+        }
+
+        function call_child(){
+            popup.child_value = "부모가 전달하는 값"
+            popup.child_function()
+        }
+
+        function parent_function(){
+            alert(parent_value)
+        }
+    </script>
+</body>
+</html>
