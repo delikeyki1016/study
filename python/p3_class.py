@@ -102,7 +102,3 @@ print("==트럭==")
 print("트럭 => ", end="")
 truck1.upSpeed(200)
 truck1.getLoad(25)
-
-
-
-

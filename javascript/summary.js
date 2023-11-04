@@ -129,3 +129,6 @@ console.log(result4)
 //round() 소수점 이하를 반올림
 //random() 0~1 소수값 추출, 0~100 사이의 랜덤 => Math.floor(Math.random() * 100) / 1~9사이랜덤 Math.random() * (10-1) + 1
 //max(), min() 큰수, 작은수
+
+let a = 10
+let a = 10
