@@ -19,7 +19,7 @@ dd_result = re.findall("(\\<dd\\>)([\\s\\S]+?)(\\</dd\\>)", samsung_index)
 # for item in dd_result :
 #     print(item[1])
 
-#2. beautiful soup 이용, 설치: cmd에서 pip install bs4
+#2. beautiful soup 이용(정적데이타 가져올 수 있음), 설치: cmd에서 pip install bs4
 from bs4 import BeautifulSoup #bs4 모듈에서 BeautifulSoup 함수만 임포트
 import urllib.request as req #req란 이름으로 가져와라 
 
@@ -47,24 +47,36 @@ baseballList = soup2.select("#content > div.tb_kbo > div > div.tbl_box.p_head > 
 # for rank, item in enumerate(baseballList, start=1) : #enumerate는 index를 붙여온다. start를 빼면 0부터 가져옴
 #     print(rank, item.text)
 
-## 셀레니움을 이용(동적데이타를 가져올때) 크롬 웹드라이브를 설치해야함 
+## 셀레니움을 이용(동적데이타를 가져올때) 크롬 웹드라이브를 설치해야함, 크롬 브라우저 버전 확인 맞는 버전의 크롬드라이버 다운로드 후, 소스코드 폴더 내 위치
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 import time
 # 드라이브 지정
-path = "./chromedriver.exe"
-driver = webdriver.Chrome(path)
+# path = "./chromedriver.exe"
+driver = webdriver.Chrome() #(path)를 넣으면 에러
 
 # 구글 사이트 검색
-driver.get("http://www.google.com")
+# driver.get("http://www.google.com")
+# time.sleep(3)
+
+# search_box = driver.find_element(By.NAME,'q') 
+# search_box.send_keys("python")
+# search_box.submit()
+# time.sleep(5)
+
+# driver.close()
+
+
+# 네이버 예제 
+driver.get("https://sports.news.naver.com/ranking/index")
 time.sleep(3)
 
-search_box = driver.find_element_by_name('q')
-search_box.send_keys("python")
-search_box.submit()
-time.sleep(5)
+elem = driver.find_element(By.ID, "_ranking_news_list_0")
+list = elem.find_elements(By.CSS_SELECTOR, 'li > a > span')
+
+for rank, item in enumerate(list, start=1) :
+    print(rank, item.text)
 
 driver.close()
-
-
 
 
