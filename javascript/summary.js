@@ -1,14 +1,13 @@
-//## window.onload : HTML/xml 파서가 문서를 파싱해서 DOM Tree를 만들고 DOM node객체가 생성된 후 실행.
+//## window.onload : HTML/xml 파서가 문서를 파싱해서 DOM node객체가 생성되면서 DOM Tree를 만든 후에(JS메모리에 저장) 실행해라 
 //즉 DOM node로 접근하는 스크립트는 window.onload안에서 작성해야 한다.
 window.onload = function () {
     let a = document.querySelector("#a1")
     //실행
 };
 //window 객체의 계층구조 
-//window(브라우저 자체) 자식들 : document, navigator, history, location, screen
+//브라우저 자식들 : window, document, navigator, history, location
 //window 객체의 프로퍼티들 : innerWidth,innerHeight,localStorage,sessionStorage,scrollX,scrollY,parent(팝업을 호출한 부모브라우저, 또는 iframe의 상위html)
-//window 객체의 메서드 : alert,confirm,prompt,stop(load 멈추기),open
-
+//window 객체의 메서드 : alert,confirm,prompt,stop(load 멈추기),open,onload 
 //history 객체 : back, forward, go(-2) 전전페이지로 이동
 //location 객체 : href, host, hostname, hash, pathname, port, protocol, search(쿼리값)
 
@@ -75,7 +74,7 @@ sum(10, 20);
 //다른 함수의 매개변수에 대입되어 사용되는 경우..
 function myFun4(argFun) {
     let result = argFun(10, 20)
-    document.write("result:" + result) //30
+    console.log("result:" + result) //30
 }
 myFun4(function (no1, no2) {
     return no1 + no2;
@@ -130,5 +129,56 @@ console.log(result4)
 //random() 0~1 소수값 추출, 0~100 사이의 랜덤 => Math.floor(Math.random() * 100) / 1~9사이랜덤 Math.random() * (10-1) + 1
 //max(), min() 큰수, 작은수
 
-let a = 10
-let a = 10
+// ##DOM 
+//document.querySelectorAll("ul li") ==> 배열로 반환 
+//pageX(스크롤 포함), clientX(스크롤 미포함), screenX(브라우저탭부분까지 포함)
+//addEventListener(이벤트, 함수, 캡처 여부) : 캡처여부는 기본이 false(버블링), true(캡처링) / onclick 이벤트함수는 캡처여부를 핸들링할수X
+//<div id="부모" onclick="함수"><div id="자식" onclick="함수"></div></div>
+//버블링 : node가 중첩되었을 때 자식에게 클릭이벤트가 발생될 때 부모에게도 클릭이벤트가 발생된다.  event.stopPropagation() //propagation:번식, 버블링을 막음
+//캡처링 : 이벤트가 부모에서 자식으로 내려옴
+//event.target(실제 이벤트가 발생한 타겟), event.currentTarget(이벤트를 등록한 타겟, a.addEventListener라면 a를 지칭)
+//true(캡처링) div1 - div2 - div3 의 순서대로 이벤트 처리
+//false(버블링)=> 이게 기본값 div3 - div2 - div1 의 순서대로 이벤트 처리
+let div1 = document.getElementById('div1')
+let div2 = document.getElementById('div2')
+let div3 = document.getElementById('div3')
+
+div1.addEventListener('click', function(){
+    console.log('div1 click')
+}, false)
+
+div2.addEventListener('click', function(){
+    console.log('div2 click')
+}, false)
+
+div3.addEventListener('click', function(event){
+    console.log('div3 click')
+    // event.stopPropagation() //propagation:번식, 버블링을 막음
+}, false)
+
+
+//노드 생성
+//0. let div = document.getElementTagName("div") 부모 노드 지정
+//1. let p = document.createElement("p") p 노드 생성 
+//2. let pAtt = document.createAttribute('style') 속성노드 생성. 
+//3. pAtt.value = 'color:red' 속성 값 정의
+//4. p.setAttributeNode(pAtt) 속성 셋팅
+//5. let pText = document.createTextNode("텍스트추가") 텍스트 노드 생성 
+//6. p.appendChild(pText) 텍스트노드 어펜드
+//7. div.appendChild(p) 부모노드에 생성한 p노드 어펜드
+let div = document.getElementById("nodetest")
+let addP = document.createElement("p")
+let pAtt = document.createAttribute('style')
+pAtt.value = 'color:red'
+addP.setAttributeNode(pAtt)
+let pText = document.createTextNode("텍스트추가")
+addP.appendChild(pText)
+div.appendChild(addP)
+
+
+//노드 삭제
+//1. 삭제할 노드의 부모노드 선택 => let node = 삭제할노드.parentNode
+//2. 부모노드.removeChild(삭제할노드) => node.removeChild(삭제할노드)
+document.getElementById('deleteNode').addEventListener('click', function(){
+    document.getElementById("nodetest").removeChild(addP)
+})
