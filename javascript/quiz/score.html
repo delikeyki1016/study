@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학점 판별</title>
+    <style>
+        .pass {
+            color:green
+        }
+
+        .fail {
+            color:red
+        }
+    </style>
+</head>
+<body>
+    <label for="kor">국어</label>
+    <input type="text" id="kor" />
+    <div id="korResult"></div>
+
+    <label for="eng">영어</label>
+    <input type="text" id="eng" />
+    <div id="engResult"></div>
+
+    <label for="math">수학</label>
+    <input type="text" id="math" />
+    <div id="mathResult"></div>
+    <button type="button" id="scoreCheck">등록</button>
+    <div id="result"></div>
+
+    <script>
+        let scoreCheck = document.getElementById('scoreCheck')
+        scoreCheck.addEventListener('click', scoreConfirm)
+
+        //pass fail 판별 함수
+        function passOrfail(node, score) {
+            node = document.getElementById(node)
+            if(score >= 60) {
+                node.innerText = "Pass"
+                node.classList.remove('fail')
+                node.classList.add('pass')
+            } else {
+                node.innerText = "Fail"
+                node.classList.remove('pass')
+                node.classList.add('fail')
+            }
+        }
+
+        function scoreConfirm() {
+            let sum = 0
+            let score = document.querySelectorAll('input')
+            //console.log("score", score)
+            score.forEach((item) => {
+                // console.log(item.getAttribute('id') + 'Result', Number(item.value))
+                sum += Number(item.value)
+                // console.log(sum, item.value)
+                passOrfail(item.getAttribute('id') + 'Result', Number(item.value))
+            })           
+
+            let average = Math.floor(sum / 3)
+            let result = ''
+            if (average >= 90) {
+                result = "A"
+            } else if (average >= 80) {
+                result = "B"
+            } else if (average >= 70) {
+                result = "C"
+            } else if (average >= 60) {
+                result = "D"
+            } else {
+                result = "F"
+            }
+            document.getElementById('result').innerText = `평균: ${average} 당신의 학점은 ${result} 입니다.`                  
+        }
+    </script>
+</body>
+</html>
