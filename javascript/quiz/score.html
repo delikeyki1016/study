@@ -26,6 +26,10 @@
     <label for="math">수학</label>
     <input type="text" id="math" />
     <div id="mathResult"></div>
+
+    <label for="science">과학</label>
+    <input type="text" id="science" />
+    <div id="scienceResult"></div>
     <button type="button" id="scoreCheck">등록</button>
     <div id="result"></div>
 
@@ -58,7 +62,7 @@
                 passOrfail(item.getAttribute('id') + 'Result', Number(item.value))
             })           
 
-            let average = Math.floor(sum / 3)
+            let average = Math.floor(sum / score.length)
             let result = ''
             if (average >= 90) {
                 result = "A"
