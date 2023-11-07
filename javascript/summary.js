@@ -1,17 +1,3 @@
-//## window.onload : HTML/xml 파서가 문서를 파싱해서 DOM node객체가 생성되면서 DOM Tree를 만든 후에(JS메모리에 저장) 실행해라 
-//즉 DOM node로 접근하는 스크립트는 window.onload안에서 작성해야 한다.
-window.onload = function () {
-    let a = document.querySelector("#a1")
-    //실행
-};
-//window 객체의 계층구조 
-//브라우저 자식들 : window, document, navigator, history, location
-//window 객체의 프로퍼티들 : innerWidth,innerHeight,localStorage,sessionStorage,scrollX,scrollY,parent(팝업을 호출한 부모브라우저, 또는 iframe의 상위html)
-//window 객체의 메서드 : alert,confirm,prompt,stop(load 멈추기),open,onload 
-//history 객체 : back, forward, go(-2) 전전페이지로 이동
-//location 객체 : href, host, hostname, hash, pathname, port, protocol, search(쿼리값)
-
-
 //## 후행,선행 연산
 a = 10;
 b = a++; //b=10, a=11 후행연산
@@ -38,7 +24,7 @@ console.log(a + b); //30
 
 // const는 선언과 동시에 초기화(할당)이 되어야 함(재할당 금지), 일반적으로 상수는 대문자로 선언하고 언더스코어로 구분(스네이크) ex) const TAX_RATE = 0.1
 
-// const로 객체를 선언한 경우는 프로퍼티 키값을 변경할 수 있다. 
+// const로 객체를 선언한 경우는 프로퍼티 키값을 변경할 수 있고 프로퍼티를 추가,삭제할 수 있다. 단 person객체 자체를 삭제할 순 없다.
 const person = { name: 'lee' } 
 person.name = 'Kim'
 console.log(person) // {name:'Kim'}
@@ -86,6 +72,20 @@ let myFunc1 = (no1, no2) => no1 + no2
 myFunc1(10, 20)
 //hof(high order function)에서 주로 사용 : 다른함수를 매개변수로 받아들이는 함수, 함수를 결과로 리턴하는 함수
 
+
+//## window.onload : HTML/xml 파서가 문서를 파싱해서 DOM node객체가 생성되면서 DOM Tree를 만든 후에(JS메모리에 저장) 실행해라 
+//즉 DOM node로 접근하는 스크립트는 window.onload안에서 작성해야 한다.
+window.onload = function () {
+    let a = document.querySelector("#a1")
+    //실행
+};
+ 
+//브라우저 자식들(기초객체) : window, document, navigator, history, location
+//window 객체의 프로퍼티들 : innerWidth,innerHeight,localStorage,sessionStorage,scrollX,scrollY,parent(팝업을 호출한 부모브라우저, 또는 iframe의 상위html)
+//window 객체의 메서드 : alert,confirm,prompt,stop(load 멈추기),open,onload 
+//history 객체 : back, forward, go(-2) 전전페이지로 이동
+//location 객체 : href, host, hostname, hash, pathname, port, protocol, search(쿼리값)
+
 //## 객체 : 관련된 변수(프로퍼티),함수(메소드)를 묶은 것, 프로그램에서 인식할 수 있는 모든 대상
 // instance (사전적의미:사례) : 객체는 new 키워드를 통해 Date객체의 인스턴스를 만들어 변수에 저장하여 사용한다.
 let now = new Date() // Date 내장객체의 인스턴스를 만들어서 now 변수에 저장 
@@ -108,8 +108,8 @@ console.log(array1 instanceof Array) //왼쪽의 객체가 오른쪽의 객체(�
 let array2 = [1,2,3,4,5]
 let result2 = array2.every(element => element > 0) //true
 //filter : 조건에 대해 참인 것만 골라 새로운 배열을 만듦 array2.filter((element) => 조건)
-//forEach : 배열요소에 대해 매개변수로 넣은 함수를 실행
-//map : 함수 결과를 모아서 반환
+//forEach : 배열요소 갯수만큼 콜백함수를 실행. 리턴 값 없음 
+//map : 배열요소 갯수만큼 콜백함수를 실행 후 새로운 배열을 반환함. 리턴 값이 있다. 
 let result3 = array2.map((element) => element * 2)
 console.log(result3) //[2,4,6,8,10]
 //indexOf : 조건에 일치하는 첫 index를 반환
@@ -134,11 +134,11 @@ console.log(result4)
 //pageX(스크롤 포함), clientX(스크롤 미포함), screenX(브라우저탭부분까지 포함)
 //addEventListener(이벤트, 함수, 캡처 여부) : 캡처여부는 기본이 false(버블링), true(캡처링) / onclick 이벤트함수는 캡처여부를 핸들링할수X
 //<div id="부모" onclick="함수"><div id="자식" onclick="함수"></div></div>
-//버블링 : node가 중첩되었을 때 자식에게 클릭이벤트가 발생될 때 부모에게도 클릭이벤트가 발생된다.  event.stopPropagation() //propagation:번식, 버블링을 막음
+//버블링 : node가 중첩되고 이벤트가 각각 있을 경우, 자식에게 클릭이벤트가 발생될 때 부모에게도 클릭이벤트가 발생된다.  event.stopPropagation() //propagation:번식, 버블링을 막음
 //캡처링 : 이벤트가 부모에서 자식으로 내려옴
 //event.target(실제 이벤트가 발생한 타겟), event.currentTarget(이벤트를 등록한 타겟, a.addEventListener라면 a를 지칭)
 //true(캡처링) div1 - div2 - div3 의 순서대로 이벤트 처리
-//false(버블링)=> 이게 기본값 div3 - div2 - div1 의 순서대로 이벤트 처리
+//false(버블링)=> 이게 기본값, 말단자식을 클릭시에 div3 - div2 - div1 의 순서대로 이벤트 처리
 let div1 = document.getElementById('div1')
 let div2 = document.getElementById('div2')
 let div3 = document.getElementById('div3')
@@ -169,8 +169,11 @@ div3.addEventListener('click', function(event){
 let div = document.getElementById("nodetest")
 let addP = document.createElement("p")
 let pAtt = document.createAttribute('style')
+let pAtt2 = document.createAttribute('id')
 pAtt.value = 'color:red'
+pAtt2.value = 'pId'
 addP.setAttributeNode(pAtt)
+addP.setAttributeNode(pAtt2)
 let pText = document.createTextNode("텍스트추가")
 addP.appendChild(pText)
 div.appendChild(addP)
@@ -180,5 +183,37 @@ div.appendChild(addP)
 //1. 삭제할 노드의 부모노드 선택 => let node = 삭제할노드.parentNode
 //2. 부모노드.removeChild(삭제할노드) => node.removeChild(삭제할노드)
 document.getElementById('deleteNode').addEventListener('click', function(){
-    document.getElementById("nodetest").removeChild(addP)
+    let myParent = document.getElementById("pId").parentNode
+    myParent.removeChild(addP)
 })
+
+// 함수명, 함수명() 차이
+// 함수() : 실행
+// addEventListener('click', 함수명) : addEventListener 함수의 매개변수로써 'click', 함수명이 전달됨. 함수명을 등록해둔 것, 함수명()을 했다면 먼저 실행이 되어버린다.
+// function b(par1, par2){} 있다면, b(10+20) => 10+20이 먼저 실행되고 b를 호출함. 
+
+//프레임워크 : 원하는 기능 구현에 집중하여 개발할 수 있도록 필요한 기능을 갖추고 있는 것, 일정한 형태를 가지고 다양한 형태의 결과물을 만드는 것
+//프로그램이 내 코드를 호출 
+//라이브러리 : 공통으로 사용될 수 있는 특정한 기능들을 모듈화한 것, 내 코드가 라이브러리를 호출
+//CDN : Content Delivery Network 
+
+//HTML Collection, NodeList 차이
+// getElementsByClassName, getElementsByTagName은 HTMLCollection 이라는 DOM 컬렉션을 반환.
+// querySelectorAll은 NodeList 라는 DOM 컬렉션을 반환합니다.
+// HTMLCollection은 노드의 상태 변화를 실시간으로 감지하고, NodeList는 노드를 정적으로 관리합니다.
+// 다만 childNodes 가 리턴한 NodeList는 정적임이 보장되지 않습니다.
+// 따라서, HTMLCollection 또는 NodeList를 그대로 사용할 때는 부작용 예방 차원 및 고차 함수 지원을 위해 Array 로 치환해 사용할 것을 권장합니다.
+const $fruits = document.querySelectorAll(".red");
+const fruits = Array.from($fruits)
+fruits.forEach(fruitDom => fruitDom.className = "blue")
+
+//## 객체를 만드는 방법 
+//1. 모형없이 만들 때 1-1 new Object / 1-2 JSON ==> 관련사항을 그냥 묶기만 하는 것 
+//*JSON (JavaScript Object Notation 자바스크립트 객체 표기법) : 다른 언어에서는 Json이 문자열이다. JS에서는 객체이기 때문에 서버에게 전달하려면 문자열로 변환하여 전달
+//문자열변환 let a = JSON.stringify(객체명)
+//객체 변환 let b = JSON.parse(문자열명) : 서버에서 넘어오는 객체는 타입이 string이다. 따라서 객체로 변환하여 사용한다.
+//2. 모형준비 만들 때 2-1 생성자함수 / 2-2 클래스 
+
+
+
+//## ajax 
