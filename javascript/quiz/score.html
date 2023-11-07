@@ -54,7 +54,9 @@
         function scoreConfirm() {
             let sum = 0
             let score = document.querySelectorAll('input')
-            //console.log("score", score)
+            console.log("score", score, typeof score)
+            let scoreArr = Array.from(score)
+            console.log("score array", scoreArr, typeof scoreArr)
             score.forEach((item) => {
                 // console.log(item.getAttribute('id') + 'Result', Number(item.value))
                 sum += Number(item.value)
