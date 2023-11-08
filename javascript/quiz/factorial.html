@@ -13,16 +13,15 @@
         
         if(num !== null && num !== '') {
             var result = 1
-            var k = 1
-            var msg = ''
-            while(k<=num){
-                if (k == num) {
+            var k = num
+            while(k>0){
+                if (k == 1) {
                     msg += `${k} => 결과값: `
                 } else {
                     msg += `${k} x `
                 }                
                 result *= k
-                k++
+                k--
             }
 
             msg = num + "! = " + msg + result
@@ -30,7 +29,14 @@
             msg = "값이 입력되지 않았습니다."
         }
         document.write(msg)
-            
+    
+        //재귀함수를 이용하면 간단하게!
+        // function myFactorial(n){
+        //     if(n==1) return 1
+        //     return n * myFactorial(n-1)
+        // }
+        // console.log(myFactorial(5))
+
     </script>
 </body>
 </html>

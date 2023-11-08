@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>array</title>
+</head>
+
+<body>
+    <script>
+        let array = [300, 400]
+        array[2] = 500
+        array.unshift(200)
+        array.unshift(100)
+        array.push(600)
+
+        document.write(`${array}<br/>`)
+
+        for (let i = 0; i < array.length; i++) {
+            document.write(`${array[i]}<br/>`)
+        }
+
+        for (let value of array) {
+            document.write(`${value}<br/>`)
+        }
+
+        // for (let i in array) {
+        //     document.write(`${i}, ${array[i]}<br/>`)
+        // }
+
+        array.forEach((element, idx) => {
+            document.write(`${idx}, ${element}<br>`)
+        });
+
+
+        function printArray(array) {
+            for (let i = 0; i < array.length; i++) {
+                console.log(`${i}, ${array[i]}`)
+            }
+        }
+
+        let array1 = ['orange', 'yellow', 'green']
+        array1.push('black')
+        array1.push('white')
+        array1.shift()
+        array1.pop()
+        printArray(array1)
+
+        //객체를 배열처럼 만들어보자
+        let arr2 = {
+            0: "orange",
+            1: "yellow",
+            2: 'green',
+            length: 3,
+            push: function (value) {
+                this[this.length] = value
+                this.length++
+            },
+            shift: function(){
+                let firstValue = this[0]
+                for(let i=0; i<this.length-1; i++){
+                    this[i] = this[i+1]
+                }
+                this.length--
+                delete this[this.length]
+                return firstValue
+            }, 
+            pop: function(){
+                let lastValue = this[this.length-1]
+                this.length--
+                delete this[this.length]
+                return lastValue
+            }
+            
+        }
+        console.log('원본객체', arr2)
+        arr2.push('black')
+        arr2.push('white')
+        console.log('객체 추가', arr2)
+        let frontvalue = arr2.shift()
+        console.log('첫번째요소', frontvalue)
+        console.log('뽑힌 객체', arr2)
+        let lastvalue = arr2.pop()
+        console.log('마지막요소',lastvalue)
+        console.log('뽑힌 객체', arr2)
+
+
+        //배열에 일반 객체처럼 이름을 가지는 프로퍼티를 추가
+        function printObj(obj){
+            for(let prop in obj){
+                if(obj.hasOwnProperty(prop)){ //없어도 되는거아님?
+                    document.write(`<div>${prop}, ${obj[prop]}</div>`)
+                }
+            }
+        }
+
+        let array = ['one', 'two', 'three']
+        // 배열에 프로퍼티가 추가되면 enumerable, writable, configuration이 기본적으로 true
+        array.name = 'kim'
+        array.name = 'lee'
+        // array.age = 30
+        console.log(array)
+
+        // 객체에 속성을 추가하는 메서드를 이용해서 추가
+        Object.defineProperty(array, 'age', { //array 배열에 age라는 프로퍼티를 추가하겠다. 
+            value: 30,
+            //property에 대한 옵션
+            enumerable: false, //열거가 가능한지, for-in 문에 노출이 되는지,
+            writable: false, //대입연산자에 의해 수정이 가능한지,
+            configurable: true //Object.defineProperty()로 값을 변경할 수 있는지, 
+        })
+
+        console.log(array)
+        array.age = 40
+        console.log(`array.age: ${array.age}`)
+
+        Object.defineProperty(array, 'age', { 
+            value: 50
+        })
+        console.log(`array.age: ${array.age}`)
+
+        printObj(array)
+    </script>
+</body>
+
+</html>
