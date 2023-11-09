@@ -23,10 +23,12 @@
                     let tel = rows[i].PHNE
                     let homepage = rows[i].HOMEPAGE
                     let img = rows[i].MAIN_IMG
+                    let geoX = rows[i].X_COORD
+                    let geoY = rows[i].Y_COORD
                     resultText += `<div class='row'>
                         <div class='col-9'>
                             <h2>${title}</h2>
-                            <div class=''>${address}</div>
+                            <div><a href="#N" onclick="window.open('https://google.co.kr/maps/@${geoX},${geoY},16z', 'popup', 'toolbar=no,scrollbars=no,top=300,left=300,width=700,height=500')"">${address}</a></div>
                             <span>${tel}</span>
                             <a href='${homepage}' target='_blank'>${homepage}</a>
                         </div>
