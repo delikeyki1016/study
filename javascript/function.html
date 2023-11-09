@@ -125,16 +125,16 @@
         }
         myFun3() // global name , let name으로 선언하면 ''
 
-        let obj = {
+        let obj2 = {
             name: 'local name',
             getName: myFun3
         }        
-        obj.getName() // local name 
+        obj2.getName() // local name 
 
 
 
 
-        // #### apply, call 문법만 다르고 사용목적은 같다. 실행시점에 어떤 객체에 선언된 것처럼 효과를 내기 위함.
+        // #### apply, call 문법만 다르고 사용목적은 같다. 실행시점에 어떤 객체에 선언된 것처럼 효과를 내기 위함. 즉 함수의 재사용을 위함
         // ## apply(함수를 실행하는 객체를 지정(this), [매개변수1, 매개변수2, ...])
         //    call(함수를 실행하는 객체를 지정(this), 매개변수1, 매개변수2, ...)
         function add4(x,y){

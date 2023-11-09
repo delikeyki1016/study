@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>콜백함수</title>
+    <script>
+        //window.onload 이벤트 콜백함수
+        window.onload = function(){
+            console.log("1. load event 발생")
+            let btn = document.getElementById('btn')
+
+            //addEventListener 이벤트 콜백함수
+            btn.addEventListener('click', function(){
+                console.log("2. click event 발생")
+
+                //setTimeout 함수 콜백함수(실행할 콜백함수, 지연시간)
+                setTimeout(function(){
+                    console.log("3. setTimeout 발생")
+                }, 5000)
+                console.log("4. click event 완료")
+            })
+            console.log("5. load event 완료")
+        }
+        //console의 실행순서 1-5-click-2-4-3
+    </script>
+</head>
+<body>
+    <button type="button" id="btn">버튼</button>
+</body>
+</html>

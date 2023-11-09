@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체 생성</title>
+</head>
+<body>
+    <script>
+        //일반 함수선언
+        function myFun(){
+            let sum = 0
+            function resultSum(){
+                return 0
+            }
+        }
+        myFun()
+
+        //생성자 함수선언
+        function User(){
+            User.prototype.name = 'kim' //생성될 인스턴스의 모형으로서의 변수가 선언됨
+            User.prototype.sayHello = function(){ //생성될 인스턴스의 모형으로서의 함수가 선언됨
+                return this.name + '님 환영합니다.'
+            }
+
+            // this.name = 'kim' //생성될 인스턴스의 모형으로서의 변수가 선언됨
+            // this.sayHello = function(){ //생성될 인스턴스의 모형으로서의 함수가 선언됨
+            //     return this.name + '님 환영합니다.'
+            // }
+
+            //생성자 함수를 이용할때 prototype 혹은 this 로 추가가능하지만 약간의 차이가 있어요.. 
+            //prototype 은 객체를 만드는 모형에 추가하는 것이고.. this 는 현재의 객체에만 추가되는 것입니다. 
+            //그럼으로 가급적 prototype 으로 추가하는 것이 모든 객체에 공통적으로 추가되는 변수, 함수가 됩니다.
+            //모든 함수는 그 함수를 생성자함수로 이용하든 안하든 내부적으로 prototype 을 유지합니다.
+            //prototype 을 이용해서 변수, 함수를 담으면 별도의 공간에 변수함수를 담아놓고..
+            //객체 생성시에 그 별도 공간(prototype) 의 변수함수로 객체를 만들어줘요..
+            //그런데 this 로 추가하게 되면 prototype 공간에 변수함수가 추가되지는 않아요..
+            //객체 생성시에 함수가 실행되면서 그 객체에 변수함수가 직접 추가되는 구조입니다.
+            //물론 생성자 함수 내부에서 prototype 으로 추가하든, this 로 추가하든.. 객체 생성시에 변수 함수가 담기니까.. 둘의 차이가 없어보이죠.
+            //그런데.. 객체의 멤버를 함수 외부에서 추가할때는 차이가 확 보여요
+            //함수 외부에서 prototype 에 변수함수를 담으면 모형에 추가됨으로 그 이후에 객체를 생성하게 되면 모두 변수함수가 객체에 포함됩니다.
+            //그런데 this 를 이용하게 되면.. 이번에 생성되는 객체에만.. 이라는 의미임으로..
+            //그 변수, 함수가 다른 객체 생성할 때는 없을 수도 있게 됩니다.
+
+        }
+        
+        User.prototype.age = '30'
+
+        let user1 = new User()  //User객체의 인스턴스 객체가 생성
+
+        console.log(user1.name)
+        console.log(user1.age)
+        console.log(user1.sayHello())
+
+        user1.name = "lee"
+        user1.age = 10
+        console.log(user1.name)
+        console.log(user1.age)
+        console.log(user1.sayHello())
+
+        //class 예약어로 객체모형 선언
+        class Person {
+            name = 'kim'
+            sayHello() {
+                return this.name + '님 환영합니다.'
+            }
+        }
+
+        let user2 = new Person()
+        console.log(user2.name)
+        console.log(user2.sayHello())
+
+        user2.name = 'lee'
+        console.log(user2.name)
+        console.log(user2.sayHello())
+
+        // class 상속
+        class SubUser extends Person {
+            subName = '닉네임'
+            sayNick() {
+                return '나의 별명은 ' + this.subName 
+            }
+        }
+
+        let user3 = new SubUser()
+        console.log(user3.sayHello())
+        console.log(user3.sayNick())
+
+        user3.name = '정우성'
+        user3.subName = '똥개'
+        console.log(user3.name)
+        console.log(user3.sayHello())
+        console.log(user3.sayNick())
+
+        //class 를 선언할때 constructor 를 꼭 선언해야 하는 것은 아닙니다. 
+        //new User() 이런 형태로 객체를 생성하면서 매개변수를 대입하지 않으면 constructor 는 선언하지 않아도 되요
+        //그런데 new User(10) 이렇게 생성하면서 매개변수를 대입하면 이 매개변수를 받을 constructor(no) {} 이런식의 생성자를 추가하게 됩니다.
+
+        class Member {
+            constructor(par) {
+                this.name = par
+            }
+            sayHi() {
+                return this.name + '님 환영'
+            }
+        }
+
+        let mem1 = new Member('hong')
+        console.log(mem1.sayHi())
+    </script>
+</body>
+</html>
