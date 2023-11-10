@@ -72,33 +72,46 @@
     </section>
 
     <script>
-        document.getElementById("myText").addEventListener("focus", () => {
-            myText.value = "";
-        });
-
         document.getElementById("btnAdd").addEventListener("click", function () {
             let myText = document.getElementById("myText").value;
             let myLi = document.createElement("li");
-            let liText = document.createTextNode(myText);
+            // let liText = document.createTextNode(myText);
+            myLi.textContent = myText
             let btnDel = document.createElement("button");
-            let btnDelText = document.createTextNode("리스트 삭제");
-
-            btnDel.appendChild(btnDelText);
-            myLi.appendChild(liText);
+            // let btnDelText = document.createTextNode("리스트 삭제");
+            btnDel.textContent = "리스트 삭제"
+            // btnDel.appendChild(btnDelText);
+            // myLi.appendChild(liText);
             myLi.appendChild(btnDel);
-            document.getElementById("myList").appendChild(myLi)
-
             document.getElementById("myList").insertBefore(myLi, document.getElementById("myList").childNodes[0]);
 
-            let allBtn = document.querySelectorAll("#myList button");
-            allBtn.forEach((item) =>{
-                item.addEventListener('click', function(){
-                    if(this.parentNode.parentNode) {
-                        this.parentNode.parentNode.removeChild(this.parentNode);
-                    }
-                })
+            btnDel.addEventListener('click', function(){
+                console.log(this.parentNode)
+                myLi.parentNode.removeChild(myLi);
             })
-            
+            // let allBtn = document.querySelectorAll("#myList button");
+            // allBtnArr.forEach((item) =>{
+            //     item.addEventListener('click', function(){
+            //         // if(this.parentNode.parentNode) {
+            //             console.log('click')
+            //             this.parentNode.parentNode.removeChild(this.parentNode);
+            //         // }
+            //     })
+            // })
+            // for(let i of allBtn){
+            //     allBtn[i].addEventListener('click', function(){
+            //         //if(this.parentNode.parentNode) {
+            //             console.log('click')
+            //             this.parentNode.parentNode.removeChild(this.parentNode);
+            //         //}
+            //     })
+            // }
+
+            //if를 삭제할때 에러 
+            // 이벤트 등록(addEventListener) 을 forEach() 에서 했음으로..
+            // 하나의 객체에 이벤트가 여러번 등록되게 됩니다.
+            // 즉 하나의 항목에 한번만 이벤트가 등록되는 것이 아니라..
+            // 여러번 등록되다 보니 나는 에러입니다.
         });
     </script>
 </body>
