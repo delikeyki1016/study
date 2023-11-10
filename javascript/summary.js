@@ -182,7 +182,7 @@ div3.addEventListener('click', function(event){
 //2. let pAtt = document.createAttribute('style') 속성노드 생성. 
 //3. pAtt.value = 'color:red' 속성 값 정의
 //4. p.setAttributeNode(pAtt) 속성 셋팅
-//5. let pText = document.createTextNode("텍스트추가") 텍스트 노드 생성 
+//5. let pText = document.createTextNode("텍스트추가") 텍스트 노드 생성 ==> textContent으로 사용하면 노드추가가 함께 되기때문에 편리함(createTextNode, appendChild)
 //6. p.appendChild(pText) 텍스트노드 어펜드
 //7. div.appendChild(p) 부모노드에 생성한 p노드 어펜드
 let div = document.getElementById("nodetest")
