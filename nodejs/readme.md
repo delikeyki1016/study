@@ -11,7 +11,6 @@
 
 * Blocking : 동기적 실행, 함수를 콜한 메인쪽에서 콜된 함수실행이 완료될 때까지 대기(블록킹)함. 코드진행이 한 줄로 이어짐 
 * Non-Blocking : 비동기적 실행, 시간이 오래 걸리면서 동시 진행이 가능한 업무에 해당 : Input/Output(file Read/Write, Networking), 암호화, 압축
-* *node는 기본적으로 I/O같은 업무를 논블로킹으로 진행한다.
 
 * OS -> process 구동 -> main thread 생성 -> code 실행 
 * process : application 실행 단위
