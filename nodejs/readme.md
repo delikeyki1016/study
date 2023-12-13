@@ -3,10 +3,10 @@
 
 * 라이브러리 : 내 코드 내에서 원하는 시점에 해당 기능을 갖다 씀
 * 프레임워크 : 만들어진 구조위에서 개발
-* 백엔드 프레임워크들 : java - spring boot / JS - node express / phthon - django / .net - asp.net 
+* 백엔드 프레임워크들 : java - spring boot / JS - node express / python - django / .net - asp.net 
 
 ## node.js
-* node.js는 크롬v8자바스크립트 엔진으로 빌드된 자바스크립트 런타이머(브라우저와 html 종속성을 제거하고 독립적으로 실행)
+* node.js는 크롬v8자바스크립트 엔진으로 빌드된 **자바스크립트 런타이머**(브라우저와 html 종속성을 제거하고 독립적으로 실행)
 * *런타임 : 특정 언어로 만든 프로그램을 실행할 수 있게 해주는 가상 머신
 
 * Blocking : 동기적 실행, 함수를 콜한 메인쪽에서 콜된 함수실행이 완료될 때까지 대기(블록킹)함. 코드진행이 한 줄로 이어짐 
@@ -25,11 +25,17 @@
 
 ## module
 * JS에서는 모듈이 JS파일
-* exports.xxx(외부 노출 이름) = yyy(파일 내의 이름)
-* module.exports = { => json으로 export
+```
+exports.xxx(외부 노출 이름) = yyy(파일 내의 이름)
+```
+```
+module.exports = {  //json으로 export
     data,
-    myFun33: myFun3, => myFun33 키값을 따로 지정할 수도 있다.
+    myFun33: myFun3, //myFun33 키값을 따로 지정할 수도 있다.
     MyClass3
 }
-* const {data: data33, myFun33, MyClass3} = require('./module3') => 따로 따로 받거나,
-* const module3 = require('./module3') => 객체로 받을 수 있다.
+```
+```
+const {data: data33, myFun33, MyClass3} = require('./module3')  // 따로 따로 받거나,
+const module3 = require('./module3') //객체로 받을 수 있다.
+```
