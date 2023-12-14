@@ -30,17 +30,18 @@ readStream.on('end', ()=> { // 읽기 끝난 후 이벤트 등록
     let result = cipher.update(readData, 'utf8', 'base64')
     result += cipher.final('base64')
 
-    const decipher = crypto.createDecipheriv(algorithm, key, iv)
-    let result2 = decipher.update(result, 'base64', 'utf8')
-    result2 += decipher.final('utf8')
-    console.log('복호화된 데이터', result2)
+    // 4. 암호화된 내용을 복호화한다. 
+    // const decipher = crypto.createDecipheriv(algorithm, key, iv)
+    // let result2 = decipher.update(result, 'base64', 'utf8')
+    // result2 += decipher.final('utf8')
+    // console.log('복호화된 데이터', result2)
 
+    // 5. quiz-chipher.txt 파일에 암호화된 문자열을 쓴다.
     const writeStream = fs1.createWriteStream('./quiz-chipher.txt')
-    writeStream.write(result2)
+    writeStream.write(result)
     writeStream.end() 
 }) 
 
-// console.log(readData) 
 // console.log(readData) 가 아래줄에 작성하셨다고 하더라도 위의 end 부분은 비동기 실행입니다. 
 //그럼으로 console.log(readData) 가 실행되는 시점은 데이터가 없는게 맞지 않을까요?
 
