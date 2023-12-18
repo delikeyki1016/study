@@ -18,21 +18,19 @@ http.createServer(async (req, res)=>{
             return res.end(data)
 
         } else if (req.method === 'POST') {
-            if (req.url === '/login'){
-                let body = ''
-                req.on('data', (data)=>{
-                    body += data
-                })
-                return req.on('end', ()=>{
-                    console.log('post...바디', body)
-                    const {id, password} = JSON.parse(body)
-                    users['id'] = id
-                    users['password'] = password
-                    console.log(users)
-                    res.writeHead(201, {'Content-Type': 'text/plain; charset=utf-8'})
-                    res.end(JSON.stringify(users))
-                })
-            }
+            let body = ''
+            req.on('data', (data)=>{
+                body += data
+            })
+            return req.on('end', ()=>{
+                console.log('post...바디', body)
+                const {id, password} = JSON.parse(body)
+                users['id'] = id
+                users['password'] = password
+                console.log(users)
+                res.writeHead(201, {'Content-Type': 'text/plain; charset=utf-8'})
+                res.end(JSON.stringify(users))
+            })
         } 
 
     } catch(err){
