@@ -18,11 +18,7 @@ const article = `11월 말 샘 올트먼 오픈AI 최고경영자(CEO)가 회사
 // 2. 작업 폴더에 quiz.txt 파일을 만든다
 // 파일생성
 const writeStream = fs.createWriteStream('./quiz.txt', {highWaterMark: 8})
-const data1 = []
-writeStream.on(article, (chunk)=> {
-        data1.push(chunk)
-    }) 
-writeStream.write(data1)
+writeStream.write(article)
 writeStream.end(()=> console.log('파일쓰기 끝'))
 writeStream.on('finish', ()=> {
     console.log('파일생성 후 쓰기 끝')
