@@ -47,7 +47,8 @@ const module3 = require('./module3') //객체로 받을 수 있다.
 
 ## 노드 내장 모듈
 * path : path.sep (경로 구분자 윈도우\), path.dirname(파일의 폴더경로), path.extname(파일 확장자), path.basename(파일이름,확장자포함), path.parse(파일경로를 root,dir,base,ext,name으로 분리), path.isAbsolute(파일경로가 절대경로인지 상대경로인지 true,false로 알려줌)
-* url : url정보를 항목별로 구분할 수 있음(protocol, username, password, host(origin), pathname, query, hash)
+* url : url정보를 항목별로 구분할 수 있음(protocol, username, password, host, pathname, query(key=value&), hash) protocol~port:origin
+
 ```
 const url = require('url')
 const { URL } = url
@@ -56,3 +57,31 @@ console.log('myUrl', myUrl)
 ```
 * createHash : 단방향 암호화 (비밀번호 => createHash, 해시문자열이 같은지 다른지만 판별) 
 * 양방향 암호화 : 암호화 crypto.createCipheriv(알고리즘, 키, iv) / 복호화 crypto.createDecipheriv(알고리즘, 키, iv)
+
+## HTTP 모듈로 서버 만들기
+
+
+## REST API 
+* Representational State Transfer(대표 상태 이전) : http프로토콜을 이용해서 client에게 url요청을 받으면, 
+response에 http request method 방식에 따라 data를(json,xml) 전송 ex)서울시 공공데이터 OpenAPI
+* http request method : request header에 method 지정(GET 조회(기본값), POST 등록, PUT 수정, PATCH 일부 수정, DELETE 삭제)
+
+* GET 방식 : body없음 
+
+## cookie (client side), session (server side) : http 상태 유지 기법
+http 프로토콜: 
+- connection oriented
+- stateless : 프로토콜 자체에서 상태 유지X, request 1 - response 1 가 완료되면 해당 connection을 종료함으로 서버 부하를 줄임
+단점은 connection 정보로 유저 히스토리(로그인, 장바구니, id기억하기체크)를 유지할 수 없다. ==> 그래서 유저의 상태를 cookie나 session 활용하여 저장해둠
+
+* cookie : response header에 쿠키 정보를 담아 응답하고 브라우저가 쿠키데이타를 expired 기한에 따라 브라우저 메모리에 담음, 이후 해당 사이트에 방문시에 request header에 해당 쿠키를 담아 요청하면 request에서 쿠키 추출.
+
+* session : 보안 상 민감한 상태 데이터의 경우는 클라이언트를 식별하여(쿠키) 서버사이드 세션에 저장함.(식별자와 값으로 저장) 식별자를 쿠키에 담아 클라이언트에 전송함. 
+
+## package.json : npm 환경파일 
+* npm run test : test는 package.json내 scripts에 등록된 스크립트 명, 자주쓰는 명령어를 등록해서 사용한다.
+* npm i -g express cookie-parser : 글로벌로 설치하면 C:\Users\사용자명\AppData\Roaming\npm\node_modules 에 설치된다. 프로젝트마다 버전관리를 따로 하기때문에 글로벌 설치는 권장사항은 아니다. (글로벌삭제도 -g 붙여서 npm uninstall -g express)
+* npm i -D nodemon : (-D : 개발시에만 필요한 툴로써 사용하는 모듈일 경우, --save-dev 같음) devDependencies에 등록됨
+* 전달받은 package.json이 있으면 해당 파일이 있는 곳에서 npm install (package.json 선언되있는 패키지가 해당 버전으로 자동 설치)
+* "express": "^4.18.2" => major 버전을 제외한 minor, patch 버전은 업그레이드 되어도 무관함. (@latest 최신버전)
+* npm outdated : 패키지에 버전 변화를 볼 수 있다.

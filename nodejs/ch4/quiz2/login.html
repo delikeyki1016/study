@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+<body>
+    <form id="form" action="/login" method="post">
+        <!-- id는 프론트js에서 태그를 식별할 목적, name은 서버에 전송할 때 전달할 키값 id=kim&password=1234 -->
+        <input type="text" id="id" name="id" placeholder="이름을 입력하세요" />
+        <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" />
+        <input type="submit" value="로그인" />
+    </form>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script><!-- ajax 통신 라이브러리 -->
+    <script src="front.js"></script>
+</body>
+</html>
