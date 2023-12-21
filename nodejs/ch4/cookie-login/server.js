@@ -9,9 +9,9 @@ const parseCookies = (cookie = '') =>  // 쿠키가 전달이 안되면, cookie 
         .map(v => v.split('=')) // 배열의 개수만큼 map() 내의 함수를 호출, =로 구분
         .reduce((acc, [k,v]) => { //k 네임, v 밸류 
             acc[k.trim()] = decodeURIComponent(v) //k.trim() 공백제거, decodeURIComponent 한글이 특수문자로 인코딩된 것을 다시 한글로 디코드
+            console.log(acc)
             return acc //json data로 리턴
-        }, {}) //?
-
+        }, {}) // {}는 acc의 초기값 설정 
 
 http.createServer(async (req, res)=>{
     // 요청에서 cookie 추출
@@ -20,7 +20,8 @@ http.createServer(async (req, res)=>{
 
     if (req.url.startsWith('/login')) {
         // 유저가 입력한 name 데이터 추출
-        const url = new URL(req.url, 'http://localhost:8080')
+        // const url = new URL(req.url, 'http://localhost:8080') 
+        const url = req.url
         console.log('url:', url)
         //http://localhost:8080/login?name=kim
         const name = url.searchParams.get('name')
@@ -31,7 +32,7 @@ http.createServer(async (req, res)=>{
         res.writeHead(302, {
             Location: '/',
             'Set-Cookie': `name=${encodeURIComponent(name)};Expires=${expire.toGMTString()};HttpOnly;Path=/`
-        }) //302 브라우저에게 지정한 url로 redirect (300번대는 redirect)
+        }) //302 브라우저에게 지정한 url로 redirect (300번대는 redirect), HttpOnly는 통신 시에만 사용할 것이다
         res.end() // 응답body는 없고, 응답헤더에 redirect 명령이 들어갔기 때문에, body 데이터는 의미가 없다.
     } else if (cookies.name) {
         // 쿠키를 분석했더니, name 데이터가 있다면
