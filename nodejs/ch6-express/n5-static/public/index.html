@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="test.js"></script>
+    <!-- 
+        이 html이 유저 브라우저에 정상노출되기까지 네트워킹은 3번 발생
+        html 먼저 요청해서 받아오고, 브라우저의 html 파서가 파싱하다가 link 태그의 css 파일을 요청, 스크립트의 js파일을 요청
+    -->
+</head>
+<body>
+    <h1>static 미들웨어 테스트</h1>
+    <p>미들웨어 테스트입니다.</p>
+    <button id="button">버튼</button><br />
+    <a href="/dynamic">dynamic</a>
+</body>
+</html>

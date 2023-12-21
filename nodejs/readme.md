@@ -82,6 +82,25 @@ http 프로토콜:
 * npm run test : test는 package.json내 scripts에 등록된 스크립트 명, 자주쓰는 명령어를 등록해서 사용한다.
 * npm i -g express cookie-parser : 글로벌로 설치하면 C:\Users\사용자명\AppData\Roaming\npm\node_modules 에 설치된다. 프로젝트마다 버전관리를 따로 하기때문에 글로벌 설치는 권장사항은 아니다. (글로벌삭제도 -g 붙여서 npm uninstall -g express)
 * npm i -D nodemon : (-D : 개발시에만 필요한 툴로써 사용하는 모듈일 경우, --save-dev 같음) devDependencies에 등록됨
+package.json scripts에 등록해서 사용가능(실행 npm start)
+```
+"scripts": {
+    "start": "npx nodemon app1.js"
+  },
+```
 * 전달받은 package.json이 있으면 해당 파일이 있는 곳에서 npm install (package.json 선언되있는 패키지가 해당 버전으로 자동 설치)
-* "express": "^4.18.2" => major 버전을 제외한 minor, patch 버전은 업그레이드 되어도 무관함. (@latest 최신버전)
+* "express": "^4.18.2" => major 버전을 제외한 minor, patch 버전은 업그레이드 되어도 무관함. (@latest 최신버전) "~4.18.2" patch 만 업그레이드 
 * npm outdated : 패키지에 버전 변화를 볼 수 있다.
+* nodemon : 소스 수정&저장 시 자동으로 서버 재시작해줌(hot deploy)
+* npx : 
+* middleware : request - middleware - response (express는 미들웨어의 조합), 등록순서가 실행순서
+
+## 템플릿 : 동적데이터를 어떤 문서에 삽입하여 html로 랜더링되어 응답될 때, 해당 문서가 템플릿
+* res.render(뷰, 데이터) => 뷰: 템플릿명, 뷰에 데이터를 삽입하여 html로 렌더링해라 
+* 템플릿엔진 : Pug, Nunjucks
+
+## 시퀄라이즈 ORM(Object Relational Mapping) 
+- 시퀄라이즈 : SQL 작업을 쉽게 할 수 있도록 도와주는 라이브러리
+- ORM : 객체와 데이터를 매핑해줌
+- sequelize, sequelize-cli 설치, npx sequelize init (시퀄라이즈 구조 생성) 
+*cli : Command Line Interface

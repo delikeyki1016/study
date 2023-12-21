@@ -1,0 +1,10 @@
+::1 - - [21/Dec/2023:12:54:31 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+::1 - - [21/Dec/2023:12:55:09 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+[0mGET / [36m304[0m 1.811 ms - -[0m
+[0mGET / [36m304[0m 0.494 ms - -[0m
+[0mGET / [36m304[0m 0.307 ms - -[0m
+[0mGET / [36m304[0m 1.777 ms - -[0m
+[0mGET / [36m304[0m 0.451 ms - -[0m
+[0mGET / [36m304[0m 0.361 ms - -[0m
+[0mGET / [36m304[0m 0.316 ms - -[0m
+::1 - - [21/Dec/2023:12:56:35 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
