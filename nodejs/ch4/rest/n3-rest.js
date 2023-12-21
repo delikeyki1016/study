@@ -17,11 +17,11 @@ http.createServer(async (req, res)=>{
             // 클라이언트 url분석
             if (req.url === '/'){
                 // index.html 을 클라이언트에게 전송, __dirname : 서버가 실행되고 있는 현재의 디렉토리 
-                const data = await fs.readFile(path.join(__dirname, 'rest/index.html'))
+                const data = await fs.readFile(path.join(__dirname, 'public/index.html'))
                 res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'}) // response header에 담길 내용
                 return res.end(data) // response body에 담길 내용 
             } else if (req.url === '/about') {
-                const data = await fs.readFile(path.join(__dirname, 'rest/about.html'))
+                const data = await fs.readFile(path.join(__dirname, 'public/about.html'))
                 res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
                 return res.end(data)
             } else if (req.url === '/users') { // 자바스크립트에서 ajax로 요청들어온 경우는 data를 요청한 것 
@@ -32,6 +32,7 @@ http.createServer(async (req, res)=>{
 
             // 그외의 요청이 들어온다면(css,js등..)
             const data = await fs.readFile(path.join(__dirname, req.url))
+            console.log('__dirname:', __dirname, req.url)
             return res.end(data)
 
         } else if (req.method === 'POST') {
@@ -78,9 +79,10 @@ http.createServer(async (req, res)=>{
                 return res.end(JSON.stringify(users))
             }
         }
-        const data = await fs.readFile('./response.html')
-        res.writeHead(200, {'Content-Type':'text/html; charset=uft-8'})
-        res.end(data)
+        // 요청분석이 없을때, 요청이 들어오면 클라이언트에 응답해주는 역할 
+        // const data = await fs.readFile('./response.html')
+        // res.writeHead(200, {'Content-Type':'text/html; charset=uft-8'})
+        // res.end(data)
     } catch(err){
         console.error(err)
         res.writeHead(500, {'Content-Type':'text/plain; charset=uft-8'})

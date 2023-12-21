@@ -5,9 +5,11 @@ async function getUser(){
         const res = await axios.get('/users')
         // res 화면에 출력
         const users = res.data
+        console.log(users)
         const list = document.getElementById('list')
         list.innerHTML = ''
         // 여러건이 넘어오면, 반복 실행
+        console.log(Object.keys(users)) // users json의 키를 배열로 만듬 
         // Object.keys() 로 배열을 만든다음에 그 배열의 갯수 만큼 map() 의 매개변수에 지정된 함수를 반복 호출
         Object.keys(users).map(function(key){
             const userDiv = document.createElement('div')
@@ -59,7 +61,7 @@ document.getElementById('form').addEventListener('submit', async (e) => {
     }
     try {
         // 서버에 등록 요청
-        await axios.post('./user', {name})
+        await axios.post('./user', {name: name}) // {name} 키와 밸류가 같다면 이렇게도 쓸 수 있음 
         getUser()
     } catch(err) {
         console.error(err)
