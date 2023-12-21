@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Cookie - 로그인 ID 정보 기억</h1>
+    <form action="login" method="post">
+        ID: <input type="text" name="id" id="id" /><br />
+        Password: <input type="password" name="pw" /><br />
+        <!-- 체크박스에 value설정이 안되어있고, 체크하면 id_check=on 으로 전달됨 -->
+        <input type="checkbox" name="id_check" id="id_check" /> 아이디 기억하기<br />
+        <button type="submit">로그인</button>
+    </form>
+    <script>
+        // 쿠키 데이터를 체크해서 아이디를 출력(백엔드에서도 가능)
+        function get_cookie(name){ //매개변수 이름에 해당되는 쿠키 데이터 리턴
+            var value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)")
+            console.log(value)
+            return value ? value[2] : null; // value가 있다면 값에 해당하는 value[2]를 리턴, value가 없다면 null 리턴
+        }
+        let cookieId = get_cookie('loginId')
+        // 설정된 쿠키값이 있다면, id출력, checkbox 체크된 상태로 출력
+        if(cookieId) {
+            document.getElementById('id').value = cookieId
+            document.getElementById('id_check').checked = true
+        }
+    </script>
+</body>
+</html>
