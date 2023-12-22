@@ -62,8 +62,12 @@ console.log('myUrl', myUrl)
 
 
 ## REST API 
-* Representational State Transfer(대표 상태 이전) : http프로토콜을 이용해서 client에게 url요청을 받으면, 
-response에 http request method 방식에 따라 data를(json,xml) 전송 ex)서울시 공공데이터 OpenAPI
+* API (Application Programming Interface) : 어플리케이션에서 데이터를 읽거나 쓰기 위한 인터페이스
+  - ex)서울시 공공데이터 Open API (public API)
+* REST (Representational State Transfer : 대표 상태 이전) 
+  - 클라이언트와 서버간의 통신방식, 인터넷식별자 URI(Uniform Resource Idenfifier)와 http를 이용한 통신 유형
+  - http프로토콜을 이용해서 client에게 request를 받으면, response에 http request method 방식에 따라 data를(json,xml) 전송 
+* RESTful : REST가 적용된 시스템
 * http request method : request header에 method 지정(GET 조회(기본값), POST 등록, PUT 수정, PATCH 일부 수정, DELETE 삭제)
 
 * GET 방식 : body없음 
