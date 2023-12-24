@@ -63,11 +63,15 @@ app.get('/query2', (req, res) => {
 })
 
 // test 3 form body
-// post 방식이면 request body에 전달됨 
+// post 방식이면 request body에 전달됨
+// express.urlencoded : 이 미들웨어 함수는 HTTP POST 요청의 본문(body)에 인코딩된 데이터를 해석하고, req.body 객체에 채워넣어주는 역할
 // extended 옵션, express의 바디 파서가 내부적으로 이용하는 모듈이 여러개 준비되어있는데, QS라는 모듈을 이용해서 파싱해라 (거의 대부분이 QS 이용)
-app.use(express.urlencoded({extended: true})) // 바디파서 이용
+// 요청헤더의 컨텐츠 타입이 Content-Type:application/x-www-form-urlencoded
+// application/x-www-form-urlencoded 인코딩 방식이란? 데이터를 "key: value" 와 같은 형태로 만들어 주는 방식 
+app.use(express.urlencoded({extended: true})) // false : querystring 모듈 사용
 app.post('/form', (req, res) => {
-    let ide = req.body.ide // query로 받아오는 것이 아니라 request body로 받아오기 때문에
+    console.log('바디', req.body)
+    let ide = req.body.ide 
     console.dir(ide)
     let ideResult = ''
     if (ide && Array.isArray(ide)){ 
@@ -100,15 +104,18 @@ app.post('/form', (req, res) => {
 // json 미들웨어 (express 제공)
 // js에서 json은 객체이고 네트워크 전송 시에는 문자열
 // json.parse(문자열), json.stringify() 해줘야하는데, express에서 알아서 변형해줌 
+// 요청헤더의 Content-Type: application/json
 app.use(express.json())
 app.post('/json1', (req, res) => {
     res.send(`json data: name=${req.body.name}, score=${req.body.score}`)
 })
 
 // test 5 : ajax 일반 문자열
+// 요청헤더 Content-Type: text/plain;charset=UTF-8
 const bodyParser = require('body-parser')
 app.use(bodyParser.text())//일반 문자열이다.. 
 app.post('/string1', (req, res) => {
+    console.log('바디파서', bodyParser.text())
     res.send(`string data : ${req.body}`)
 })
 

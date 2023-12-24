@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 파일업로드시에 필수입력 enctype="multipart/form-data" -->
+    <form id="form" action="/upload" method="post" enctype="multipart/form-data">
+        <!-- 일반 text input 함께 입력해도 멀터가 지원함 -->
+        <input type="file" name="file1" multiple />
+        <button type="submit">업로드</button>
+    </form>
+</body>
+</html>
