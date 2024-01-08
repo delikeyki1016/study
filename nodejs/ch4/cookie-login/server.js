@@ -20,8 +20,8 @@ http.createServer(async (req, res)=>{
 
     if (req.url.startsWith('/login')) {
         // 유저가 입력한 name 데이터 추출
-        // const url = new URL(req.url, 'http://localhost:8080') 
-        const url = req.url
+        const url = new URL(req.url, 'http://localhost:8080') 
+        // const url = req.url
         console.log('url:', url)
         //http://localhost:8080/login?name=kim
         const name = url.searchParams.get('name')

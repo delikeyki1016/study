@@ -13,7 +13,7 @@ console.log('포맷', url.format(myUrl))
 console.log('쿼리', myUrl.searchParams)
 
 // 쿼리문자열은 key=value 형태. 키를 명시해서 특정데이터 추출
-console.log('모두 추출', myUrl.searchParams.getAll('q'))
+console.log('모두 추출', myUrl.searchParams.getAll('where'))
 console.log('하나만 추출', myUrl.searchParams.get('q'))
 
 // 모든 키 값 획득

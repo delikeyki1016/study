@@ -14,22 +14,22 @@ const article = `11월 말 샘 올트먼 오픈AI 최고경영자(CEO)가 회사
 11월 말 샘 올트먼 오픈AI 최고경영자(CEO)가 회사에서 쫓겨났다가 닷새 만에 복직했다. 이와 관련해 소문이 무성했지만, 그중 유력한 소식 하나는 오픈AI가 회사 정체성에 혼란이 올 만큼 고도로 발전된 인공지능(AI)을 개발하고 있다는 것이다. 바로 ‘Q*(큐스타) 알고리즘’으로 불리는 AI 개발 프로젝트다. 현재 베일에 싸인 채 개발되고 있는 Q* 알고리즘은 인류를 위협할 강력한 AI 기술이라는 점에서 오픈AI 안팎에서 찬반양론을 불러일으키고 있다.
 `
 // write stream
-const writeStream = fs.createWriteStream('./sample3.txt', {highWaterMark: 8}) // 파일생성함, 버퍼 단위 지정은 선택사항. 기본적으로 설정된 버퍼에 의해 쓰기가 된다.
-writeStream.on('finish', ()=> console.log('파일생성 끝'))  // 쓰기가 끝났을 때 실행
-// writeStream.write('hellow world 1\n') // 파일 쓰기
-writeStream.write(article)
-writeStream.end(()=> console.log('쓰기끝')) // 쓰기 끝
+// const writeStream = fs.createWriteStream('./sample3.txt', {highWaterMark: 8}) // 파일생성 준비, 버퍼 단위 지정은 선택사항. 기본적으로 설정된 버퍼에 의해 쓰기가 된다.
+// writeStream.on('finish', ()=> console.log('파일생성 끝'))  // 쓰기가 끝났을 때 실행 2
+// // writeStream.write('hellow world 1\n') // 파일 쓰기
+// writeStream.write(article)
+// writeStream.end(()=> console.log('쓰기끝')) // 쓰기 끝 1
 
 // read stream
-// const readStream = fs.createReadStream('./sample3.txt', {highWaterMark: 8}) // highWaterMark 버퍼사이즈 지정. 
-// const data = []
-// // 버퍼에서 데이터가 전달되어, 버퍼가 full 되었을 때, 버퍼에 쌓인 데이터를 보통 chunk라고 부름 
-// readStream.on('data', (chunk)=> {
-//     data.push(chunk)
-//     console.log('data', chunk, chunk.length)
-// }) 
-// readStream.on('end', ()=> { // 읽기 끝난 후 이벤트 등록
-//     console.log('읽기 끝')
-//     console.log(Buffer.concat(data).toString())
-// }) 
-// readStream.on('error', ()=> console.log(err))
+const readStream = fs.createReadStream('./sample3.txt', {highWaterMark: 8}) // highWaterMark 버퍼사이즈 지정. 
+const data = []
+// 버퍼에서 데이터가 전달되어, 버퍼가 full 되었을 때, 버퍼에 쌓인 데이터를 보통 chunk라고 부름 
+readStream.on('data', (chunk)=> {
+    data.push(chunk)
+    console.log('data', chunk, chunk.length)
+}) 
+readStream.on('end', ()=> { // 읽기 끝난 후 이벤트 등록
+    console.log('읽기 끝')
+    console.log(Buffer.concat(data).toString())
+}) 
+readStream.on('error', ()=> console.log(err))

@@ -48,13 +48,6 @@ const module3 = require('./module3') //객체로 받을 수 있다.
 ## 노드 내장 모듈
 * path : path.sep (경로 구분자 윈도우\), path.dirname(파일의 폴더경로), path.extname(파일 확장자), path.basename(파일이름,확장자포함), path.parse(파일경로를 root,dir,base,ext,name으로 분리), path.isAbsolute(파일경로가 절대경로인지 상대경로인지 true,false로 알려줌)
 * url : url정보를 항목별로 구분할 수 있음(protocol, username, password, host, pathname, query(key=value&), hash) protocol~port:origin
-
-```
-const url = require('url')
-const { URL } = url
-const myUrl = new URL('https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8')
-console.log('myUrl', myUrl)
-```
 * createHash : 단방향 암호화 (비밀번호 => createHash, 해시문자열이 같은지 다른지만 판별) 
 * 양방향 암호화 : 암호화 crypto.createCipheriv(알고리즘, 키, iv) / 복호화 crypto.createDecipheriv(알고리즘, 키, iv)
 
@@ -65,12 +58,12 @@ console.log('myUrl', myUrl)
 * API (Application Programming Interface) : 어플리케이션에서 데이터를 읽거나 쓰기 위한 인터페이스
   - ex)서울시 공공데이터 Open API (public API)
 * REST (Representational State Transfer : 대표 상태 이전) 
-  - 클라이언트와 서버간의 통신방식, 인터넷식별자 URI(Uniform Resource Idenfifier)와 http를 이용한 통신 유형
+  - 클라이언트와 서버간의 통신방식, 인터넷식별자 URI(Uniform Resource Idenfifier)와 http를 이용한 통신 유형(data만을 전송)
   - http프로토콜을 이용해서 client에게 request를 받으면, response에 http request method 방식에 따라 data를(json,xml) 전송 
 * RESTful : REST가 적용된 시스템
 * http request method : request header에 method 지정(GET 조회(기본값), POST 등록, PUT 수정, PATCH 일부 수정, DELETE 삭제)
 
-* GET 방식 : body없음 
+* GET 방식 : body없음, POST 방식 : body에 데이타 전달 
 
 ## cookie (client side), session (server side) : http 상태 유지 기법
 http 프로토콜: 
